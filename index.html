@@ -133,24 +133,21 @@ footer{
   </nav>
 </header>
 
-<!-- 2025 -->
 <section id="s2025" class="page active">
   <div class="gallery">
-
-    <div class="card" onclick="ac('foto1.jpg')"><img src="foto1.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto2.jpg')"><img src="foto2.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto3.jpg')"><img src="foto3.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto4.jpg')"><img src="foto4.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto5.jpg')"><img src="foto5.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto6.jpg')"><img src="foto6.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto7.jpg')"><img src="foto7.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto8.jpg')"><img src="foto8.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto9.jpg')"><img src="foto9.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto10.jpg')"><img src="foto10.jpg"><p>❤️</p></div>
-    <div class="card" onclick="ac('foto11.jpg')"><img src="foto11.jpg"><p>❤️</p></div>
-
+    <script>
+      for (let i = 1; i <= 20; i++) {
+        document.write(`
+          <div class="card" onclick="ac('foto${i}.jpg')">
+            <img src="foto${i}.jpg" onerror="this.style.display='none'">
+            <p>❤️</p>
+          </div>
+        `);
+      }
+    </script>
   </div>
 </section>
+
 
 <!-- 2026 -->
 <section id="s2026" class="page">
@@ -191,3 +188,4 @@ function kapat(){document.getElementById("modal").style.display="none"}
 
 </body>
 </html>
+
