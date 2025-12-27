@@ -11,6 +11,8 @@ body{
   font-family:Arial, sans-serif;
   background:#fff0f5;
 }
+
+/* LOGIN */
 #login{
   height:100vh;
   display:flex;
@@ -26,17 +28,43 @@ body{
   border:none;
   border-radius:8px;
 }
-.page{display:none;padding:20px;}
+
+/* SAYFALAR */
+.page{display:none;padding:20px 20px 90px}
 .page.active{display:block}
+
+/* FOTO GALERİ */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:14px;
 }
-.gallery img, video{
+.photo{
   width:100%;
-  border-radius:10px;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:14px;
+  background:#fff;
 }
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* VIDEO GALERİ */
+.videos{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
+}
+.videos video{
+  width:100%;
+  border-radius:14px;
+}
+
+/* MENU */
 nav{
   position:fixed;
   bottom:0;
@@ -45,7 +73,7 @@ nav{
 }
 nav button{
   flex:1;
-  padding:12px;
+  padding:14px;
   border:none;
   background:#ff9a9e;
   color:white;
@@ -56,33 +84,42 @@ nav button{
 
 <body>
 
+<!-- LOGIN -->
 <div id="login">
   <h1>Bizim Hikâyemiz 💖</h1>
   <input id="pw" type="password" placeholder="Şifre">
   <button onclick="gir()">Giriş</button>
 </div>
 
+<!-- SITE -->
 <div id="site" style="display:none">
+
+  <!-- 2025 -->
   <div id="s2025" class="page active">
     <h2>2025 Anılarımız 📸</h2>
+
     <div class="gallery">
-      <img src="foto1.jpeg">
-      <img src="foto2.jpeg">
-      <img src="foto3.jpeg">
-      <img src="foto6.jpeg">
-      <img src="foto7.jpeg">
-      <img src="foto8.jpeg">
-      <img src="foto9.jpeg">
-      <img src="foto10.jpeg">
-      <img src="foto11.jpeg">
+      <div class="photo"><img src="foto1.jpeg"></div>
+      <div class="photo"><img src="foto2.jpeg"></div>
+      <div class="photo"><img src="foto3.jpeg"></div>
+      <div class="photo"><img src="foto6.jpeg"></div>
+      <div class="photo"><img src="foto7.jpeg"></div>
+      <div class="photo"><img src="foto8.jpeg"></div>
+      <div class="photo"><img src="foto9.jpeg"></div>
+      <div class="photo"><img src="foto10.jpeg"></div>
+      <div class="photo"><img src="foto11.jpeg"></div>
+    </div>
+
+    <div class="videos">
       <video src="foto4.mp4" controls></video>
       <video src="foto5.mp4" controls></video>
     </div>
   </div>
 
+  <!-- 2026 -->
   <div id="s2026" class="page">
     <h2>2026 Dileklerimiz ✨</h2>
-    <p>Birlikte daha nice anılar biriktirmek ❤️</p>
+    <p>Birlikte daha nice anılar, seyahatler ve gülüşler ❤️</p>
   </div>
 
   <nav>
