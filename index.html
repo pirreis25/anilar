@@ -2,18 +2,15 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bizim Hikâyemiz 💖</title>
+<title>Bizim Hikâyemiz ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body{
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family:Arial, sans-serif;
   background:#fff0f5;
 }
-.hidden{display:none}
-
-/* GİRİŞ */
 #login{
   height:100vh;
   display:flex;
@@ -23,169 +20,92 @@ body{
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
   color:white;
 }
-#login input{
+#login input, #login button{
   padding:12px;
+  margin:6px;
   border:none;
-  border-radius:20px;
-  margin-top:10px;
+  border-radius:8px;
 }
-#login button{
-  margin-top:10px;
-  padding:10px 20px;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-/* HEADER */
-header{
-  text-align:center;
-  padding:20px;
-  background:#ffb6c1;
-  color:#4a2c2a;
-}
-nav button{
-  margin:5px;
-  padding:10px 16px;
-  border:none;
-  border-radius:20px;
-  cursor:pointer;
-}
-nav button.active{
-  background:white;
-  font-weight:bold;
-}
-
-/* SAYFALAR */
-.page{display:none}
+.page{display:none;padding:20px;}
 .page.active{display:block}
-
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:15px;
-  padding:20px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
 }
-.card{
-  background:white;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 5px 15px rgba(0,0,0,.1);
-  cursor:pointer;
-}
-.card img{
+.gallery img, video{
   width:100%;
-  height:260px;
-  object-fit:cover;
+  border-radius:10px;
 }
-.card p{
-  padding:10px;
-  text-align:center;
-}
-
-.wish{
-  background:white;
-  margin:15px;
-  padding:15px;
-  border-radius:20px;
-  text-align:center;
-}
-footer{
-  text-align:center;
-  padding:15px;
-  color:#777;
-}
-
-/* MODAL */
-#modal{
+nav{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  justify-content:center;
-  align-items:center;
+  bottom:0;
+  width:100%;
+  display:flex;
 }
-#modal img{
-  max-width:90%;
-  max-height:85%;
-  border-radius:20px;
+nav button{
+  flex:1;
+  padding:12px;
+  border:none;
+  background:#ff9a9e;
+  color:white;
+  font-size:16px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- GİRİŞ -->
 <div id="login">
-  <h1>💖 Bizim Dünyamız 💖</h1>
-  <input type="password" id="password" placeholder="Şifreyi gir">
-  <button onclick="giris()">Giriş</button>
+  <h1>Bizim Hikâyemiz 💖</h1>
+  <input id="pw" type="password" placeholder="Şifre">
+  <button onclick="gir()">Giriş</button>
 </div>
 
-<!-- SİTE -->
-<div id="site" class="hidden">
-
-<header>
-  <h1>Bizim Hikâyemiz</h1>
-  <nav>
-    <button id="b2025" class="active">2025 Anıları</button>
-    <button id="b2026">2026 Dilekleri</button>
-  </nav>
-</header>
-
-<section id="s2025" class="page active">
-  <div class="gallery">
-    <script>
-      for (let i = 1; i <= 20; i++) {
-        document.write(`
-          <div class="card" onclick="ac('foto${i}.jpg')">
-            <img src="foto${i}.jpg" onerror="this.style.display='none'">
-            <p>❤️</p>
-          </div>
-        `);
-      }
-    </script>
+<div id="site" style="display:none">
+  <div id="s2025" class="page active">
+    <h2>2025 Anılarımız 📸</h2>
+    <div class="gallery">
+      <img src="foto1.jpeg">
+      <img src="foto2.jpeg">
+      <img src="foto3.jpeg">
+      <img src="foto6.jpeg">
+      <img src="foto7.jpeg">
+      <img src="foto8.jpeg">
+      <img src="foto9.jpeg">
+      <img src="foto10.jpeg">
+      <img src="foto11.jpeg">
+      <video src="foto4.mp4" controls></video>
+      <video src="foto5.mp4" controls></video>
+    </div>
   </div>
-</section>
 
+  <div id="s2026" class="page">
+    <h2>2026 Dileklerimiz ✨</h2>
+    <p>Birlikte daha nice anılar biriktirmek ❤️</p>
+  </div>
 
-<!-- 2026 -->
-<section id="s2026" class="page">
-  <div class="wish">🌍 Birlikte seyahat</div>
-  <div class="wish">❤️ Hep el ele</div>
-  <div class="wish">📸 Daha çok anı</div>
-</section>
-
-<footer>Bu site sevgiyle yapıldı 💕</footer>
-</div>
-
-<!-- MODAL -->
-<div id="modal" onclick="kapat()">
-  <img id="modalImg">
+  <nav>
+    <button onclick="goster('s2025')">2025</button>
+    <button onclick="goster('s2026')">2026</button>
+  </nav>
 </div>
 
 <script>
-const sifre="1234"; // ŞİFREYİ DEĞİŞTİR
-
-function giris(){
-  if(document.getElementById("password").value===sifre){
-    document.getElementById("login").style.display="none";
-    document.getElementById("site").classList.remove("hidden");
-  }else alert("Yanlış şifre");
+const sifre="1234";
+function gir(){
+  if(document.getElementById("pw").value===sifre){
+    login.style.display="none";
+    site.style.display="block";
+  }else{
+    alert("Şifre yanlış");
+  }
 }
-
-const b2025=document.getElementById("b2025");
-const b2026=document.getElementById("b2026");
-const s2025=document.getElementById("s2025");
-const s2026=document.getElementById("s2026");
-
-b2025.onclick=()=>{b2025.classList.add("active");b2026.classList.remove("active");s2025.classList.add("active");s2026.classList.remove("active")}
-b2026.onclick=()=>{b2026.classList.add("active");b2025.classList.remove("active");s2026.classList.add("active");s2025.classList.remove("active")}
-
-function ac(f){document.getElementById("modalImg").src=f;document.getElementById("modal").style.display="flex"}
-function kapat(){document.getElementById("modal").style.display="none"}
+function goster(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 </script>
 
 </body>
 </html>
-
