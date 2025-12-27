@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Bizim Hikâyemiz ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{margin:0;font-family:Arial;background:#fff0f5}
+
+/* LOGIN */
+#login{
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+color:white
+}
+#login input,#login button{
+padding:12px;margin:6px;border:none;border-radius:8px
+}
+
+/* SAYFALAR */
+.page{display:none;padding:20px 20px 90px}
+.page.active{display:block}
+
+/* FOTO */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px
+}
+.photo{
+aspect-ratio:1/1;border-radius:16px;
+overflow:hidden;cursor:pointer
+}
+.photo img{
+width:100%;height:100%;object-fit:cover
+}
+
+/* VIDEO */
+.videos{
+margin-top:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:18px
+}
+video{width:100%;border-radius:16px;background:black}
+
+/* LIGHTBOX */
+#lightbox{
+position:fixed;inset:0;
+background:rgba(0,0,0,.85);
+display:none;justify-content:center;align-items:center
+}
+#lightbox img{
+max-width:90%;max-height:90%;border-radius:16px
+}
+
+/* MENU */
+nav{
+position:fixed;bottom:0;width:100%;display:flex
+}
+nav button{
+flex:1;padding:14px;border:none;
+background:#ff9a9e;color:white;font-size:16px
+}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+<h1>Bizim Hikâyemiz 💖</h1>
+<input id="pw" type="password" placeholder="Şifre">
+<button onclick="giris()">Giriş</button>
+</div>
+
+<div id="lightbox" onclick="kapat()">
+<img id="buyukFoto">
+</div>
+
+<div id="site" style="display:none">
+
+<div id="s2025" class="page active">
+<h2>2025 Anılarımız 📸</h2>
+
+<div class="gallery">
+<div class="photo" onclick="buyut(this)"><img src="foto1.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto2.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto3.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto6.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto7.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto8.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto9.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto10.jpeg"></div>
+<div class="photo" onclick="buyut(this)"><img src="foto11.jpeg"></div>
+</div>
+
+<div class="videos">
+<video src="foto4.mp4" controls playsinline></video>
+<video src="foto5.mp4" controls playsinline></video>
+</div>
+</div>
+
+<div id="s2026" class="page">
+<h2>2026 Dileklerimiz ✨</h2>
+<p>Birlikte daha çok gülmek, daha çok anı ❤️</p>
+</div>
+
+<nav>
+<button onclick="sayfa('s2025')">2025</button>
+<button onclick="sayfa('s2026')">2026</button>
+</nav>
+</div>
+
+<script>
+const sifre="1234";
+function giris(){
+if(pw.value===sifre){
+login.style.display="none";
+site.style.display="block";
+}else alert("Şifre yanlış");
+}
+function sayfa(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+function buyut(el){
+buyukFoto.src=el.querySelector("img").src;
+lightbox.style.display="flex";
+}
+function kapat(){lightbox.style.display="none";}
+</script>
+
+</body>
+</html>
