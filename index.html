@@ -224,9 +224,10 @@ daha çok anı biriktirmek ❤️
 
 <script>
 function mektupKapat(){
-  mektup.style.display="none";
-  login.style.display="flex";
+  document.getElementById("mektup").style.display = "none";
+  document.getElementById("login").style.display = "flex";
 }
+
 const sifre="1234";
 function giris(){
   if(pw.value===sifre){
@@ -250,4 +251,5 @@ function kapat(){
 
 </body>
 </html>
+
 
