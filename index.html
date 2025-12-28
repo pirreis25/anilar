@@ -1,66 +1,35 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>Bizim Hikâyemiz ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{
-  margin:0;
-  font-family:Georgia,serif;
-  background:#fff0f5;
-  overflow-x:hidden;
+<script>
+let caliyor = false;
+const muzik = document.getElementById("muzik");
+const muzikBtn = document.getElementById("muzikBtn");
+
+// Sayfa yüklendiğinde müzik başlasın
+window.addEventListener("load", () => {
+  muzik.play().then(() => {
+    caliyor = true;
+    muzikBtn.innerText = "🔇";
+  }).catch(err => {
+    // Eğer otomatik çalma tarayıcı izin vermezse sessiz başlat
+    caliyor = false;
+    muzikBtn.innerText = "🔊";
+  });
+});
+
+function muzikKontrol(){
+  if(!caliyor){
+    muzik.play();
+    caliyor = true;
+    muzikBtn.innerText = "🔇";
+  }else{
+    muzik.pause();
+    caliyor = false;
+    muzikBtn.innerText = "🔊";
+  }
 }
 
-/* KAPLUMBAĞA */
-#baslatBtnContainer{
-  position:fixed;
-  top:0; left:0;
-  width:100vw;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#fff0f5;
-  z-index:1000;
+function mektubuKapat(){
+  document.getElementById("mektup").style.display="none";
+  document.getElementById("login").style.display="flex";
 }
-#baslatBtn{
-  font-size:50px;
-  padding:20px;
-  border-radius:50%;
-  border:none;
-  background:#ff9a9e;
-  color:white;
-  cursor:pointer;
-}
+</script>
 
-/* MEKTUP */
-#mektup{
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100vw;
-  height:100vh;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-#mektup .icerik{
-  background:#fffaf0;
-  width:90%;
-  max-width:520px;
-  padding:28px;
-  border-radius:18px;
-  max-height:90vh;
-  overflow-y:auto;
-}
-#mektup h2{text-align:center}
-#mektup p{line-height:1.7}
-#mektup button{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  backgro
