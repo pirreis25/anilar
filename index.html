@@ -263,7 +263,14 @@ daha çok anı biriktirmek ❤️
 function mektubuKapat(){
   document.getElementById("mektup").style.display="none";
   document.getElementById("login").style.display="flex";
+
+  // Müzik otomatik başlasın
+  muzik.play();
+  caliyor = true;
+  document.getElementById("muzikBtn").innerText = "🔇";
 }
+</script>
+
 
 function giris(){
   if(document.getElementById("pw").value==="1234"){
