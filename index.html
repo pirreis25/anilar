@@ -5,232 +5,221 @@
 <title>Bizim Hikâyemiz ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <style>
-  /* GENEL AYARLAR */
-  body { margin: 0; font-family: 'Georgia', serif; background: #fff0f5; overflow-x: hidden; }
+  body { margin: 0; font-family: 'Georgia', serif; background: #fff0f5; overflow-x: hidden; transition: background 0.5s; }
   
-  /* GİRİŞ EKRANI (KAPLUMBAĞA) */
-  #girisEkrani {
-    position: fixed;
-    inset: 0;
-    background: #fffaf0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    cursor: pointer;
-  }
+  /* GİRİŞ EKRANI */
+  #girisEkrani { position: fixed; inset: 0; background: #fffaf0; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; cursor: pointer; }
   .turtle-btn { background: none; border: none; font-size: 100px; cursor: pointer; }
 
   /* MEKTUP PANELİ */
-  #mektupPaneli {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-  }
-  .icerik-kutu {
-    background: #fffaf0;
-    width: 85%;
-    max-width: 480px;
-    padding: 25px;
-    border-radius: 20px;
-    max-height: 85vh;
-    overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  }
-  .icerik-kutu p { line-height: 1.8; color: #444; margin-bottom: 15px; font-size: 16px; text-align: left; }
+  #mektupPaneli { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 10000; }
+  .icerik-kutu { background: #fffaf0; width: 85%; max-width: 500px; padding: 30px; border-radius: 20px; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .icerik-kutu p { line-height: 1.8; color: #444; margin-bottom: 20px; font-size: 16px; text-align: left; }
 
   /* LOGIN */
-  #login { 
-    display: none; height: 100vh; flex-direction: column; 
-    justify-content: center; align-items: center; 
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4); color: white;
-  }
-  #login input { padding: 12px; border-radius: 8px; border: none; margin: 10px; text-align: center; width: 200px; outline: none; }
-  #login button { padding: 10px 30px; border-radius: 8px; border: none; background: #d63384; color: white; font-weight: bold; cursor: pointer; }
+  #login { display: none; height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg,#ff9a9e,#fad0c4); color: white; }
+  #login input { padding: 12px; border-radius: 8px; border: none; margin: 10px; text-align: center; width: 220px; outline: none; }
+  #login button { padding: 12px 40px; border-radius: 8px; border: none; background: #d63384; color: white; font-weight: bold; cursor: pointer; }
 
-  /* SİTE VE GALERİ */
-  #site { display: none; padding: 20px 10px 100px 10px; max-width: 1200px; margin: 0 auto; }
+  /* ANA SAYFA (2025) */
+  #site { display: none; padding: 20px 10px 120px 10px; max-width: 1200px; margin: 0 auto; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; padding: 10px; }
+  .photo { background: white; padding: 4px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; }
+  .photo img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; }
+  .photo p { display: none; }
+
+  /* 2026 SAYFASI */
+  #sayfa2026 { display: none; padding: 20px 15px 150px 15px; text-align: center; max-width: 800px; margin: 0 auto; }
   
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 12px;
-    padding: 10px;
-  }
+  /* SAYAÇ TASARIMI */
+  .sayac-kutu { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 20px 0; border: 2px solid #d63384; }
+  #timer { font-size: 22px; font-weight: bold; color: #d63384; display: flex; justify-content: space-around; margin-top: 10px; }
+  .time-part { display: flex; flex-direction: column; }
+  .time-part span { font-size: 12px; color: #888; text-transform: uppercase; }
 
-  .photo {
-    background: white;
-    padding: 4px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .photo:active { transform: scale(0.95); }
+  /* CHECKLIST (YAPACAKLARIMIZ) */
+  .todo-list { text-align: left; background: white; padding: 25px; border-radius: 20px; margin-top: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  .todo-item { display: flex; align-items: center; margin-bottom: 15px; cursor: pointer; font-size: 16px; color: #444; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+  .todo-item input { margin-right: 15px; width: 20px; height: 20px; accent-color: #d63384; }
+  .todo-item.done { text-decoration: line-through; opacity: 0.6; }
 
-  .photo img {
-    width: 100%;
-    aspect-ratio: 3 / 4; /* Vesikalık Oranı */
-    object-fit: cover;
-    border-radius: 3px;
-    display: block;
-  }
-  .photo p { display: none; } /* Galeride yazıları gizle */
+  /* ALT NAVİGASYON */
+  .nav-menu { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 10px 25px; border-radius: 40px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); display: none; z-index: 5000; gap: 30px; }
+  .nav-btn { background: none; border: none; font-weight: bold; color: #aaa; cursor: pointer; font-size: 14px; outline: none; transition: 0.3s; }
+  .nav-btn.aktif { color: #d63384; border-bottom: 2px solid #d63384; }
 
-  /* LIGHTBOX (BÜYÜTME) */
-  #lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
-    cursor: pointer;
-  }
-  #lightbox img {
-    max-width: 90%;
-    max-height: 70vh;
-    border: 3px solid white;
-    border-radius: 10px;
-    object-fit: contain;
-  }
-  #lightbox p { color: white; margin-top: 20px; text-align: center; padding: 0 20px; font-style: italic; font-size: 18px; }
+  /* LIGHTBOX & MÜZİK */
+  #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 20000; cursor: pointer; }
+  #lightbox img { max-width: 90%; max-height: 70vh; border: 3px solid white; border-radius: 10px; }
+  #lightbox p { color: white; margin-top: 20px; text-align: center; font-style: italic; padding: 0 20px; }
+  #muzikBtn { position: fixed; top: 15px; right: 15px; z-index: 10001; background: #ff9a9e; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
 
-  /* MÜZİK BUTONU */
-  #muzikBtn {
-    position: fixed;
-    top: 15px; right: 15px;
-    z-index: 10001;
-    background: #ff9a9e; color: white; border: none;
-    width: 45px; height: 45px; border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  /* MASAÜSTÜ İÇİN GALERİ AYARI */
-  @media (min-width: 600px) {
-    .gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  }
+  @media (min-width: 600px) { .gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
 </style>
 </head>
 <body>
 
-<audio id="muzik" loop>
-  <source src="muzik.mp3?v=2" type="audio/mpeg">
-</audio>
+<audio id="muzik" loop> <source src="muzik.mp3" type="audio/mpeg"> </audio>
 <button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
 
 <div id="girisEkrani" onclick="baslat()">
   <button class="turtle-btn">🐢</button>
-  <p style="color: #d63384; font-weight: bold; margin-top: 20px; font-family: sans-serif;">Başlatmak için dokun ❤️</p>
+  <p style="color: #d63384; font-weight: bold; margin-top: 20px;">Bizim İçin Dokun ❤️</p>
 </div>
 
 <div id="mektupPaneli">
   <div class="icerik-kutu">
     <h2 style="color: #d63384; text-align: center;">Sevgilim,</h2>
-    <p>
-      Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Ben o gün aşağıda arabayla uğraşıyordum ama aslında aklım başka hiçbir yerde değildi. Seni görebilmek için durmadan inip çıktım. Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.
-    </p>
-    <p>
-      İlk başta beni etkileyen güzelliğin ve samimiyetindi. Ama zamanla seni tanıdıkça anladım ki, içinin dışınla bir oluşu, merhametin ve bana karşı olan tavırların seni benim için çok daha özel kılıyordu. En önemlisi de beni gerçekten dinlemen ve anlamandı.
-    </p>
-    <p>
-      Aslında bizim sevgimiz karşılıklıydı. Belki de bu yüzden aşkımız bu kadar güzel büyüdü. Eylül’ün on birinde bana ilk defa “seni çok seviyorum” dediğin an kalbime kazındı. On beşinde sevgili olduk. Sana kısık bir sesle “sana aşığım” dedim ve benimle uzun bir yolculuğa var mısın diye sordum.
-    </p>
-    <p>
-      Zor zamanlarımız oldu belki ama biz hiçbir zaman kavga ederek çözmedik. Ne hissettiysek anlattık, dinledik ve hep aştık. Bu da bana şunu öğretti: Sen benim için sadece bir sevgili değil, aynı zamanda sığındığım yer oldun.
-    </p>
+    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Ben o gün aşağıda arabayla uğraşıyordum ama aslında aklım başka hiçbir yerde değildi. Seni görebilmek için durmadan inip çıktım. Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.</p>
+    <p>İlk başta beni etkileyen güzelliğin ve samimiyetindi. Ama zamanla seni tanıdıkça anladım ki, içinin dışınla bir oluşu, merhametin ve bana karşı olan tavırların seni benim için çok daha özel kılıyordu. En önemlisi de beni gerçekten dinlemen ve anlamandı.</p>
+    <p>Aslında bizim sevgimiz karşılıklıydı. Belki de bu yüzden aşkımız bu kadar güzel büyüdü. Eylül’ün on birinde bana ilk defa “seni çok seviyorum” dediğin an kalbime kazındı. On beşinde sevgili olduk. Sana kısık bir sesle “sana aşığım” dedim ve benimle uzun bir yolculuğa var mısın diye sordum.</p>
+    <p>Zor zamanlarımız oldu belki ama biz hiçbir zaman kavga ederek çözmedik. Ne hissettiysek anlattık, dinledik ve hep aştık. Bu da bana şunu öğretti: Sen benim için sadece bir sevgili değil, aynı zamanda sığındığım yer oldun.</p>
     <p style="font-weight: bold; font-style: italic;">İşin kısacası...</p>
-    <p style="text-align: center; font-weight: bold; color: #d63384; font-size: 18px; margin-top: 10px;">
-      Seni elə sevirəm ki ❤️
-    </p>
-    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:16px;">
-      Mektubu Kapat
-    </button>
+    <p style="text-align: center; font-weight: bold; color: #d63384; font-size: 20px; margin-top: 10px;">Seni elə sevirəm ki ❤️</p>
+    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold; margin-top:10px;">Mektubu Kapat</button>
   </div>
 </div>
 
 <div id="login">
-  <h1>Bizim Hikâyemiz 💖</h1>
-  <input type="password" id="pw" placeholder="Şifre">
-  <button onclick="girisYap()">Giriş Yap</button>
+  <h1>Bizim Dünyamız 💖</h1>
+  <input type="password" id="pw" placeholder="Şifreyi Gir">
+  <button onclick="girisYap()">Giriş</button>
 </div>
 
 <div id="site">
   <h2 style="color: #d63384; text-align: center; margin-bottom: 25px;">2025 Anılarımız 📸</h2>
-  
   <div class="gallery">
     <div class="photo" onclick="buyut(this)"><img src="foto1.jpeg"><p>Abdullah ve o meşhur on numaralı bakışı…</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto2.jpeg"><p>İyi ki hayatımdasın, iyi ki benimlesin hayatım 💖</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto3.jpeg"><p>Gözler yalan söylemez…</p></div>
-    <div class="photo" onclick="buyut(this)"><img src="foto6.jpeg"><p>Güzelimle Tavşanlı date</p></div>
+    <div class="photo" onclick="buyut(this)"><img src="foto6.jpeg"><p>Birlikte çıktığımız ilk yolculuk ✈️</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto7.jpeg"><p>Ponçiğim… kalbimin en tatlı hâli</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto8.jpeg"><p>Tatlışım benim 💖</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto9.jpeg"><p>Küçük bir öpücük, kocaman bir mutluluk</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto10.jpeg"><p>Anı biriktirmeyi çok iyi biliyoruz 😄</p></div>
     <div class="photo" onclick="buyut(this)"><img src="foto11.jpeg"><p>Güzelime aldığım ilk çiçek 🌸</p></div>
-    <div class="photo" onclick="buyut(this)"><img src="foto12.jpeg"><p>En güzel doğum günü…❤️</p></div>
-    <div class="photo" onclick="buyut(this)"><img src="foto13.jpeg"><p>Güzelime yaptığım ilk pasta💖</p></div>
+    <div class="photo" onclick="buyut(this)"><img src="foto12.jpeg"><p>En güzel doğum günü… çünkü sen vardın 🎂❤️</p></div>
+    <div class="photo" onclick="buyut(this)"><img src="foto13.jpeg"><p>Güzelime yaptığım ilk pasta… sevgim kadar tatlı 🍰💖</p></div>
   </div>
+</div>
+
+<div id="sayfa2026">
+  <h2 style="color: #d63384;">Yıl Dönümü 💍</h2>
+  <div class="sayac-kutu">
+    <div id="timer">
+      <div class="time-part" id="days">00<span>Gün</span></div>
+      <div class="time-part" id="hours">00<span>Saat</span></div>
+      <div class="time-part" id="minutes">00<span>Dakika</span></div>
+      <div class="time-part" id="seconds">00<span>Saniye</span></div>
+    </div>
+    <p style="margin-top: 15px; color: #888; font-size: 14px;">15 Eylül 2026'ya kalan süre...</p>
+  </div>
+
+  <div class="todo-list">
+    <h3 style="color: #d63384; text-align: center;">2026'da Beraber Yapacaklarımız ✨</h3>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> En az 10 kitap okumalıyız 📚</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Beraber film izlemeliyiz 🎬</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Hiç gitmediğimiz bir şehre gitmek 🗺️</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Sabah gün doğumunu izlemek 🌅</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> En az 50 yeni fotoğraf çekinmek 📸</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Birlikte yeni bir yemek pişirmek 🍳</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Birbirimize mektup yazmak ✉️</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Sahilde uzun bir yürüyüş yapmak 🌊</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Gökyüzünü izlemek ✨</div>
+    <div class="todo-item" onclick="toggleTask(this)"><input type="checkbox"> Hep ama hep çok mutlu olmak ❤️</div>
+  </div>
+</div>
+
+<div id="nav" class="nav-menu">
+  <button id="btn2025" class="nav-btn aktif" onclick="sayfaDegistir(2025)">2025</button>
+  <button id="btn2026" class="nav-btn" onclick="sayfaDegistir(2026)">2026</button>
 </div>
 
 <div id="lightbox" onclick="kapatLightbox()">
   <img id="buyukFoto" src="">
   <p id="buyukYazi"></p>
-  <span style="color:white; margin-top:10px; font-size:12px; opacity:0.6;">Kapatmak için dokun</span>
 </div>
 
 <script>
   const muzik = document.getElementById("muzik");
 
-  // BAŞLATMA FONKSİYONU
   function baslat() {
-    muzik.play().catch(e => console.log("Müzik etkileşim hatası"));
+    muzik.play().catch(e => console.log("Etkileşim hatası"));
     document.getElementById("muzikBtn").innerText = "🔇";
     document.getElementById("girisEkrani").style.display = "none";
     document.getElementById("mektupPaneli").style.display = "flex";
   }
 
-  // MÜZİK KONTROL
-  function muzikKontrol() {
-    if (muzik.paused) { muzik.play(); document.getElementById("muzikBtn").innerText = "🔇"; }
-    else { muzik.pause(); document.getElementById("muzikBtn").innerText = "🔊"; }
-  }
-
-  // MEKTUP KAPAT
   function mektubuKapat() {
     document.getElementById("mektupPaneli").style.display = "none";
     document.getElementById("login").style.display = "flex";
   }
 
-  // ŞİFRE KONTROL
   function girisYap() {
     if (document.getElementById("pw").value === "1234") {
       document.getElementById("login").style.display = "none";
       document.getElementById("site").style.display = "block";
-    } else { alert("Hatalı şifre ❤️"); }
+      document.getElementById("nav").style.display = "flex";
+      updateTimer(); // Sayaç başlat
+    } else { alert("Şifre Yanlış ❤️"); }
   }
 
-  // FOTOĞRAF BÜYÜTME
+  function sayfaDegistir(yil) {
+    if (yil === 2025) {
+      document.getElementById("site").style.display = "block";
+      document.getElementById("sayfa2026").style.display = "none";
+      document.getElementById("btn2025").classList.add("aktif");
+      document.getElementById("btn2026").classList.remove("aktif");
+      document.body.style.background = "#fff0f5";
+    } else {
+      document.getElementById("site").style.display = "none";
+      document.getElementById("sayfa2026").style.display = "block";
+      document.getElementById("btn2026").classList.add("aktif");
+      document.getElementById("btn2025").classList.remove("aktif");
+      document.body.style.background = "#f9f9f9";
+    }
+    window.scrollTo(0,0);
+  }
+
+  // GERİ SAYIM SİSTEMİ
+  function updateTimer() {
+    const target = new Date("September 15, 2026 00:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const diff = target - now;
+      
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = (d < 10 ? "0"+d : d) + "<span>Gün</span>";
+      document.getElementById("hours").innerHTML = (h < 10 ? "0"+h : h) + "<span>Saat</span>";
+      document.getElementById("minutes").innerHTML = (m < 10 ? "0"+m : m) + "<span>Dakika</span>";
+      document.getElementById("seconds").innerHTML = (s < 10 ? "0"+s : s) + "<span>Saniye</span>";
+    }, 1000);
+  }
+
+  // CHECKLIST FONKSİYONU
+  function toggleTask(el) {
+    el.classList.toggle("done");
+    const cb = el.querySelector('input');
+    cb.checked = !cb.checked;
+  }
+
   function buyut(el) {
     document.getElementById("buyukFoto").src = el.querySelector('img').src;
     document.getElementById("buyukYazi").innerText = el.querySelector('p').innerText;
     document.getElementById("lightbox").style.display = "flex";
   }
 
-  function kapatLightbox() {
-    document.getElementById("lightbox").style.display = "none";
+  function kapatLightbox() { document.getElementById("lightbox").style.display = "none"; }
+
+  function muzikKontrol() {
+    if (muzik.paused) { muzik.play(); document.getElementById("muzikBtn").innerText = "🔇"; }
+    else { muzik.pause(); document.getElementById("muzikBtn").innerText = "🔊"; }
   }
 </script>
 
 </body>
 </html>
-
-
