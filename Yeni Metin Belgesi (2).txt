@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Bizim Hikâyemiz ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<style>
+  body { margin: 0; font-family: Georgia, serif; background: #fff0f5; }
+
+  /* GİRİŞ EKRANI - SADECE KAPLUMBAĞA */
+  #girisEkrani {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fffaf0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  /* DEV BUTON */
+  .baslat-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 100px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .baslat-btn p {
+    font-size: 18px;
+    color: #d63384;
+    margin-top: 20px;
+    font-family: sans-serif;
+  }
+
+  /* MEKTUP EKRANI */
+  #mektupPaneli {
+    display: none; /* Başta gizli */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+
+  .icerik-kutu {
+    background: #fffaf0;
+    width: 85%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: left;
+  }
+
+  /* LOGIN & SITE */
+  #login, #site { display: none; text-align: center; padding: 20px; }
+  #login { height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: #ff9a9e; color: white;}
+  
+  .gallery img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+
+  #muzikBtn {
+    position: fixed;
+    top: 15px; right: 15px;
+    z-index: 10001;
+    background: #ff9a9e; color: white; border: none;
+    width: 45px; height: 45px; border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+
+<audio id="muzik" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+<button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
+
+<div id="girisEkrani">
+  <button class="baslat-btn" onclick="baslat()">
+    <span>🐢</span>
+    <p>Başlatmak için tıkla ❤️</p>
+  </button>
+</div>
+
+<div id="mektupPaneli">
+  <div class="icerik-kutu">
+    <h2 style="color: #d63384; text-align: center;">Sevgilim,</h2>
+    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım.</p>
+    <p>Güzelliğin ve samimiyetin beni etkiledi ama kalbimi sana bağlayan şey merhametin oldu.</p>
+    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
+    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold;">Anılarımıza Git ✨</button>
+  </div>
+</div>
+
+<div id="login">
+  <h1>Bizim Hikâyemiz 💖</h1>
+  <input type="password" id="pw" placeholder="Şifre" style="padding:10px; border-radius:8px; border:none; margin:10px;">
+  <button onclick="girisYap()" style="padding:10px 20px; border-radius:8px; border:none; background:#d63384; color:white;">Giriş</button>
+</div>
+
+<div id="site">
+  <h2 style="color: #d63384;">Anılarımız 📸</h2>
+  <div class="gallery">
+    <img src="foto1.jpeg">
+    <img src="foto2.jpeg">
+  </div>
+</div>
+
+<script>
+  const muzik = document.getElementById("muzik");
+
+  function baslat() {
+    // Müziği oynat
+    muzik.play().then(() => {
+      document.getElementById("muzikBtn").innerText = "🔇";
+    }).catch(e => alert("Lütfen sayfada herhangi bir yere dokun."));
+
+    // Giriş ekranını yok et, mektubu getir
+    document.getElementById("girisEkrani").style.display = "none";
+    document.getElementById("mektupPaneli").style.display = "flex";
+  }
+
+  function muzikKontrol() {
+    if (muzik.paused) { muzik.play(); document.getElementById("muzikBtn").innerText = "🔇"; }
+    else { muzik.pause(); document.getElementById("muzikBtn").innerText = "🔊"; }
+  }
+
+  function mektubuKapat() {
+    document.getElementById("mektupPaneli").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+  }
+
+  function girisYap() {
+    const sifre = document.getElementById("pw").value;
+    if (sifre === "1234") {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("site").style.display = "block";
+    } else {
+      alert("Hatalı şifre ❤️");
+    }
+  }
+</script>
+
+</body>
+</html>
