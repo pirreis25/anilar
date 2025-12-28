@@ -244,7 +244,6 @@ nav button{
 
 </div>
 
-
 <h2 style="text-align:center">2026 Dileklerimiz ✨</h2>
 <p style="text-align:center">
 Birlikte daha çok gülmek,<br>
@@ -259,41 +258,7 @@ daha çok anı biriktirmek ❤️
 <button>2026</button>
 </nav>
 
-<script>
-function mektubuKapat(){
-  document.getElementById("mektup").style.display="none";
-  document.getElementById("login").style.display="flex";
-
-  // Müzik otomatik başlasın
-  muzik.play();
-  caliyor = true;
-  document.getElementById("muzikBtn").innerText = "🔇";
-}
-</script>
-
-
-function giris(){
-  if(document.getElementById("pw").value==="1234"){
-    document.getElementById("login").style.display="none";
-    document.getElementById("site").style.display="block";
-  }else{
-    alert("Şifre yanlış");
-  }
-}
-
-function buyut(el){
-  document.getElementById("buyukFoto").src = el.querySelector("img").src;
-  document.getElementById("buyukYazi").innerText = el.querySelector("p").innerText;
-  document.getElementById("lightbox").style.display="flex";
-}
-
-function kapatLightbox(){
-  document.getElementById("lightbox").style.display="none";
-}
-  
-</script>
-  
-  <!-- MÜZİK -->
+<!-- MÜZİK -->
 <audio id="muzik" loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
@@ -318,24 +283,21 @@ cursor:pointer;">
 <script>
 let caliyor = false;
 const muzik = document.getElementById("muzik");
+const muzikBtn = document.getElementById("muzikBtn");
+
+window.addEventListener("load", () => {
+  // Mektup açılır açılmaz müzik başlasın
+  muzik.play().then(() => {
+    caliyor = true;
+    muzikBtn.innerText = "🔇";
+  }).catch(err => {
+    // Tarayıcı izin vermezse sessiz başlat
+    caliyor = false;
+    muzikBtn.innerText = "🔊";
+  });
+});
 
 function muzikKontrol(){
   if(!caliyor){
     muzik.play();
-    caliyor = true;
-    muzikBtn.innerText = "🔇";
-  }else{
-    muzik.pause();
-    caliyor = false;
-    muzikBtn.innerText = "🔊";
-  }
-}
-</script>
-
-
-</body>
-</html>
-
-
-
-
+    caliyor =
