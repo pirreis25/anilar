@@ -5,110 +5,116 @@
 <title>Bizim Hikâyemiz ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <style>
-body{ margin:0; font-family:Georgia,serif; background:#fff0f5; overflow: hidden; touch-action: manipulation; }
+  body { margin: 0; font-family: Georgia, serif; background: #fff0f5; overflow: hidden; }
 
-/* GİRİŞ EKRANI - TIKLAMA SORUNU GİDERİLDİ */
-#girisEkrani {
-  position: fixed;
-  inset: 0;
-  background: #fffaf0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* En üstte olmasını sağlar */
-  cursor: pointer;
-  transition: opacity 0.8s ease;
-}
+  /* GİRİŞ EKRANI - TAM EKRAN TIKLAMA ALANI */
+  #girisEkrani {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fffaf0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* En üstte */
+    cursor: pointer;
+  }
 
-.turtle-container {
-  position: relative;
-  pointer-events: none; /* Tıklamayı arka plana (ekrana) geçirir */
-  animation: süzülme 3s ease-in-out infinite;
-}
+  .turtle-container {
+    position: relative;
+    font-size: 100px;
+    animation: süzülme 3s ease-in-out infinite;
+  }
 
-@keyframes süzülme {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
+  .flowers {
+    position: absolute;
+    font-size: 50px;
+    bottom: 5px;
+    left: -25px;
+    transform: rotate(-20deg);
+  }
 
-.turtle { font-size: 100px; }
-.flowers {
-  position: absolute;
-  font-size: 50px;
-  bottom: 0px; 
-  left: -20px; 
-  transform: rotate(-20deg);
-}
+  @keyframes süzülme {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
 
-#girisEkrani p { 
-  color: #d63384; 
-  margin-top: 40px; 
-  font-weight: bold;
-  text-align: center;
-  padding: 0 20px;
-}
+  /* MEKTUP */
+  #mektup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none; /* Başta gizli */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
-/* MEKTUP */
-#mektup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:none; 
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-#mektup .icerik{
-  background:#fffaf0;
-  width:85%;
-  max-width:450px;
-  padding:25px;
-  border-radius:18px;
-  text-align: left;
-}
+  .mektup-icerik {
+    background: #fffaf0;
+    width: 85%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 18px;
+    position: relative;
+  }
 
-/* LOGIN */
-#login{ display:none; height:100vh; background:linear-gradient(135deg,#ff9a9e,#fad0c4); flex-direction:column; justify-content:center; align-items:center; color:white;}
-#login input { padding:12px; margin:10px; border-radius:8px; border:none; text-align:center;}
-#login button { padding:10px 30px; border-radius:8px; border:none; background:#d63384; color:white; font-weight:bold;}
+  /* DİĞERLERİ */
+  #login, #site { display: none; text-align: center; padding: 20px; }
+  #login { height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg,#ff9a9e,#fad0c4); color: white;}
+  
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .gallery img { width: 100%; border-radius: 10px; }
 
-/* SİTE */
-#site{display:none; padding: 20px 10px 100px 100px;}
-.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; }
-.photo img{ width:100%; border-radius:15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);}
-
-#muzikBtn{ position:fixed; top:15px; right:15px; z-index:10000; background:#ff9a9e; color:white; border:none; border-radius:50%; width:45px; height:45px; }
+  #muzikBtn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 100000;
+    background: #ff9a9e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+  }
 </style>
 </head>
-<body onclick="hikayeyiBaslat()" ontouchstart="hikayeyiBaslat()">
+<body>
 
-<div id="girisEkrani">
+<audio id="muzik" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+<button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
+
+<div id="girisEkrani" onclick="her seyiBaslat()">
     <div class="turtle-container">
-        <span class="turtle">🐢</span>
-        <span class="flowers">💐</span>
+        🐢<span class="flowers">💐</span>
     </div>
-    <p>Senin için bir sürprizim var...<br>Başlatmak için ekrana tıkla ❤️</p>
+    <p style="color: #d63384; font-weight: bold; margin-top: 30px;">
+        Sana bir sürprizim var...<br>Başlatmak için tıkla ❤️
+    </p>
 </div>
 
 <div id="mektup">
-  <div class="icerik">
+  <div class="mektup-icerik">
     <h2 style="color: #d63384; text-align: center;">Sevgilim,</h2>
-    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.</p>
-    <p>Güzelliğin ve samimiyetin beni etkiledi ama içinin dışınla bir oluşu kalbimi sana bağlayan şey oldu.</p>
+    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum...</p>
+    <p>Güzelliğin ve samimiyetin beni etkiledi ama kalbimi sana bağlayan şey merhametin oldu.</p>
     <p><strong>Seni elə sevirəm ki ❤️</strong></p>
-    <button onclick="mektubuKapat(event)" style="width:100%; background:#ff9a9e; color:white; border:none; padding:12px; border-radius:10px; font-weight:bold;">Devamı İçin Tıkla ✨</button>
+    <button onclick="mektuptanLogine()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer;">Devamı İçin Tıkla ✨</button>
   </div>
 </div>
 
-<div id="login" onclick="event.stopPropagation()">
+<div id="login">
   <h1>Bizim Hikâyemiz 💖</h1>
-  <input type="password" id="pw" placeholder="Şifreyi Gir">
-  <button onclick="giris()">Giriş Yap</button>
+  <input type="password" id="pw" placeholder="Şifre" style="padding:10px; border-radius:8px; border:none; margin:10px;">
+  <button onclick="girisYap()" style="padding:10px 20px; border-radius:8px; border:none; background:#d63384; color:white;">Giriş</button>
 </div>
 
-<div id="site" onclick="event.stopPropagation()">
-  <h2 style="text-align:center; color:#d63384;">Anılarımız 📸</h2>
+<div id="site">
+  <h2 style="color: #d63384;">Anılarımız 📸</h2>
   <div class="gallery">
     <img src="foto1.jpeg">
     <img src="foto2.jpeg">
@@ -116,54 +122,47 @@ body{ margin:0; font-family:Georgia,serif; background:#fff0f5; overflow: hidden;
   </div>
 </div>
 
-<audio id="muzik" loop>
-  <source src="muzik.mp3" type="audio/mpeg">
-</audio>
-<button id="muzikBtn" onclick="muzikKontrol(event)">🔊</button>
-
 <script>
-const muzik = document.getElementById("muzik");
-let basladi mi = false;
+  const muzik = document.getElementById("muzik");
 
-function hikayeyiBaslat() {
-    if (basladi mi) return; // Zaten başladıysa tekrar çalışma
-    basladi mi = true;
+  function her seyiBaslat() {
+    // 1. Müziği Çal
+    muzik.play().then(() => {
+      document.getElementById("muzikBtn").innerText = "🔇";
+    }).catch(e => console.log("Müzik hatası"));
 
-    // Müziği oynat
-    muzik.play().catch(e => console.log("Müzik hatası:", e));
-    document.getElementById("muzikBtn").innerText = "🔇";
-    
-    // Giriş ekranını kaldır
-    const giris = document.getElementById("girisEkrani");
-    giris.style.opacity = "0";
-    setTimeout(() => {
-        giris.style.display = "none";
-        document.getElementById("mektup").style.display = "flex";
-    }, 800);
-}
+    // 2. Giriş ekranını gizle
+    document.getElementById("girisEkrani").style.display = "none";
 
-function muzikKontrol(e){
-  e.stopPropagation(); // Butona tıklayınca ana fonksiyonun çalışmasını engeller
-  if(muzik.paused){ muzik.play(); e.target.innerText = "🔇"; }
-  else { muzik.pause(); e.target.innerText = "🔊"; }
-}
-
-function mektubuKapat(e){
-  e.stopPropagation();
-  document.getElementById("mektup").style.display="none";
-  document.getElementById("login").style.display="flex";
-}
-
-function giris(){
-  const pw = document.getElementById("pw").value;
-  if(pw==="1234"){ 
-    document.getElementById("login").style.display="none";
-    document.getElementById("site").style.display="block";
-    document.body.style.overflow = "auto"; // Site açılınca kaydırmayı aç
-  }else{
-    alert("Hatalı şifre ❤️");
+    // 3. Mektubu göster
+    document.getElementById("mektup").style.display = "flex";
   }
-}
+
+  function muzikKontrol() {
+    if (muzik.paused) {
+      muzik.play();
+      document.getElementById("muzikBtn").innerText = "🔇";
+    } else {
+      muzik.pause();
+      document.getElementById("muzikBtn").innerText = "🔊";
+    }
+  }
+
+  function mektuptanLogine() {
+    document.getElementById("mektup").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+  }
+
+  function girisYap() {
+    const sifre = document.getElementById("pw").value;
+    if (sifre === "1234") {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("site").style.display = "block";
+      document.body.style.overflow = "auto";
+    } else {
+      alert("Hatalı şifre ❤️");
+    }
+  }
 </script>
 
 </body>
