@@ -12,12 +12,30 @@ body{
   background:#fff0f5;
 }
 
+/* KAPLUMBAĞA BUTONU */
+#baslatBtnContainer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:#fff0f5;
+}
+#baslatBtn{
+  font-size:50px;
+  padding:20px;
+  border-radius:50%;
+  border:none;
+  background:#ff9a9e;
+  color:white;
+  cursor:pointer;
+}
+
 /* MEKTUP */
 #mektup{
+  display:none;
   position:fixed;
   inset:0;
   background:rgba(0,0,0,0.7);
-  display:flex;
   justify-content:center;
   align-items:center;
   z-index:1000;
@@ -96,208 +114,4 @@ body{
 }
 #lightbox img{
   max-width:85%;
-  max-height:60vh;
-  border-radius:18px;
-}
-
-#lightbox p{
-  color:white;
-  margin-top:15px;
-  text-align:center;
-  font-style:italic;
-  font-size:18px;
-  max-width:85%;
-  line-height:1.5;
-  word-wrap:break-word;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-
-/* MENU */
-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-}
-nav button{
-  flex:1;
-  padding:14px;
-  border:none;
-  background:#ff9a9e;
-  color:white;
-  font-size:16px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- MEKTUP -->
-<div id="mektup">
-  <div class="icerik">
-    <h2>Sevgilim,</h2>
-
-    <p>
-      Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum.
-      Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım.
-      Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.
-    </p>
-
-    <p>
-      Güzelliğin ve samimiyetin beni etkiledi ama
-      içinin dışınla bir oluşu, merhametin ve beni gerçekten dinleyip anlaman
-      kalbimi sana bağlayan şey oldu.
-    </p>
-
-    <p>
-      Eylül’ün on birinde söylediğin “seni çok seviyorum” kalbime kazındı.
-      Sana “benimle uzun bir yolculuğa var mısın” dedim
-      ve iyi ki evet dedin.
-    </p>
-
-    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
-
-    <button onclick="mektubuKapat()">Mektubu Aç 💌</button>
-  </div>
-</div>
-
-<!-- LOGIN -->
-<div id="login">
-  <h1>Bizim Hikâyemiz 💖</h1>
-  <input type="password" id="pw" placeholder="Şifre">
-  <button onclick="giris()">Giriş</button>
-</div>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="kapatLightbox()">
-  <div>
-    <img id="buyukFoto">
-    <p id="buyukYazi"></p>
-  </div>
-</div>
-
-<!-- SITE -->
-<div id="site">
-
-<h2 style="text-align:center">2025 Anılarımız 📸</h2>
-
-<div class="gallery">
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto1.jpeg">
-    <p>Abdullah ve o meşhur on numaralı bakışı…</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto2.jpeg">
-    <p>İyi ki hayatımdasın, iyi ki benimlesin hayatım 💖</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto3.jpeg">
-    <p>Gözler yalan söylemez…</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto6.jpeg">
-    <p>Birlikte çıktığımız ilk yolculuk ✈️</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto7.jpeg">
-    <p>Ponçiğim… kalbimin en tatlı hâli</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto8.jpeg">
-    <p>Tatlışım benim 💖</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto9.jpeg">
-    <p>Küçük bir öpücük, kocaman bir mutluluk</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto10.jpeg">
-    <p>Anı biriktirmeyi çok iyi biliyoruz 😄</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto11.jpeg">
-    <p>Güzelime aldığım ilk çiçek 🌸</p>
-  </div>
-
-  <!-- YENİ EKLENENLER -->
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto12.jpeg">
-    <p>En güzel doğum günü…❤️</p>
-  </div>
-
-  <div class="photo" onclick="buyut(this)">
-    <img src="foto13.jpeg">
-    <p>Güzelime yaptığım ilk pasta…💖</p>
-  </div>
-
-</div>
-
-<h2 style="text-align:center">2026 Dileklerimiz ✨</h2>
-<p style="text-align:center">
-Birlikte daha çok gülmek,<br>
-daha çok gezmek,<br>
-daha çok anı biriktirmek ❤️
-</p>
-
-</div>
-
-<nav>
-<button>2025</button>
-<button>2026</button>
-</nav>
-
-<!-- MÜZİK -->
-<audio id="muzik" loop>
-  <source src="muzik.mp3" type="audio/mpeg">
-</audio>
-
-<button id="muzikBtn" onclick="muzikKontrol()"
-style="
-position:fixed;
-top:15px;
-right:15px;
-z-index:2000;
-background:#ff9a9e;
-color:white;
-border:none;
-border-radius:50%;
-width:50px;
-height:50px;
-font-size:20px;
-cursor:pointer;">
-🔊
-</button>
-
-<script>
-let caliyor = false;
-const muzik = document.getElementById("muzik");
-const muzikBtn = document.getElementById("muzikBtn");
-
-window.addEventListener("load", () => {
-  // Mektup açılır açılmaz müzik başlasın
-  muzik.play().then(() => {
-    caliyor = true;
-    muzikBtn.innerText = "🔇";
-  }).catch(err => {
-    // Tarayıcı izin vermezse sessiz başlat
-    caliyor = false;
-    muzikBtn.innerText = "🔊";
-  });
-});
-
-function muzikKontrol(){
-  if(!caliyor){
-    muzik.play();
-    caliyor =
+  max-h
