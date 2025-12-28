@@ -23,7 +23,7 @@ body{
   justify-content:center;
   align-items:center;
   background:#fff0f5;
-  z-index:5000; /* en üstte */
+  z-index:1000;
 }
 #baslatBtn{
   font-size:50px;
@@ -43,10 +43,9 @@ body{
   width:100vw;
   height:100vh;
   background:rgba(0,0,0,0.7);
-  display:flex;
   justify-content:center;
   align-items:center;
-  z-index:4000; /* kaplumbağadan sonra */
+  z-index:900;
 }
 #mektup .icerik{
   background:#fffaf0;
@@ -85,7 +84,7 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  z-index:3000;
+  z-index:800;
 }
 #login input,#login button{
   padding:12px;
@@ -110,4 +109,100 @@ body{
   overflow:hidden;
   cursor:pointer;
 }
-.phot
+.photo img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+.photo p{display:none}
+
+/* LIGHTBOX */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10000;
+}
+#lightbox img{
+  max-width:85%;
+  max-height:60vh;
+  border-radius:18px;
+}
+#lightbox p{
+  color:white;
+  margin-top:15px;
+  text-align:center;
+  font-style:italic;
+  font-size:18px;
+  max-width:85%;
+  line-height:1.5;
+  word-wrap:break-word;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* MENU */
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+}
+nav button{
+  flex:1;
+  padding:14px;
+  border:none;
+  background:#ff9a9e;
+  color:white;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- KAPLUMBAĞA BUTONU -->
+<div id="baslatBtnContainer">
+  <button id="baslatBtn">🐢</button>
+</div>
+
+<!-- MEKTUP -->
+<div id="mektup">
+  <div class="icerik">
+    <h2>Sevgilim,</h2>
+
+    <p>
+      Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum.
+      Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım.
+      Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.
+    </p>
+
+    <p>
+      Güzelliğin ve samimiyetin beni etkiledi ama
+      içinin dışınla bir oluşu, merhametin ve beni gerçekten dinleyip anlaman
+      kalbimi sana bağlayan şey oldu.
+    </p>
+
+    <p>
+      Eylül’ün on birinde söylediğin “seni çok seviyorum” kalbime kazındı.
+      Sana “benimle uzun bir yolculuğa var mısın” dedim
+      ve iyi ki evet dedin.
+    </p>
+
+    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
+
+    <button onclick="mektubuKapat()">Mektubu Aç 💌</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login">
+  <h1>Bizim Hikâyemiz 💖</h1>
+  <input type="password" id="pw" placeholder="Şifre">
+  <button onclick="giris()">Giriş</button>
+</div>
+
+<
