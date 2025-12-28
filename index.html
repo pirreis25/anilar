@@ -5,44 +5,35 @@
 <title>Bizim Hikâyemiz ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <style>
-  body { margin: 0; font-family: Georgia, serif; background: #fff0f5; }
+  body { margin: 0; font-family: Georgia, serif; background: #fff0f5; overflow-x: hidden; }
 
-  /* GİRİŞ EKRANI - SADECE KAPLUMBAĞA */
+  /* GİRİŞ EKRANI */
   #girisEkrani {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    inset: 0;
     background: #fffaf0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    cursor: pointer;
   }
 
-  /* DEV BUTON */
-  .baslat-btn {
+  .turtle-btn {
     background: none;
     border: none;
-    cursor: pointer;
     font-size: 100px;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
   }
 
-  .baslat-btn p {
-    font-size: 18px;
-    color: #d63384;
-    margin-top: 20px;
-    font-family: sans-serif;
-  }
-
-  /* MEKTUP EKRANI */
+  /* MEKTUP PANELİ */
   #mektupPaneli {
-    display: none; /* Başta gizli */
+    display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
     z-index: 10000;
@@ -51,17 +42,24 @@
   .icerik-kutu {
     background: #fffaf0;
     width: 85%;
-    max-width: 450px;
-    padding: 30px;
+    max-width: 480px;
+    padding: 25px;
     border-radius: 20px;
-    text-align: left;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .icerik-kutu p {
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 15px;
   }
 
   /* LOGIN & SITE */
-  #login, #site { display: none; text-align: center; padding: 20px; }
+  #login, #site { display: none; text-align: center; }
   #login { height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: #ff9a9e; color: white;}
-  
-  .gallery img { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+  #site { padding: 20px; }
+  .gallery img { width: 100%; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
   #muzikBtn {
     position: fixed;
@@ -69,6 +67,7 @@
     z-index: 10001;
     background: #ff9a9e; color: white; border: none;
     width: 45px; height: 45px; border-radius: 50%;
+    cursor: pointer;
   }
 </style>
 </head>
@@ -79,34 +78,67 @@
 </audio>
 <button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
 
-<div id="girisEkrani">
-  <button class="baslat-btn" onclick="baslat()">
-    <span>🐢</span>
-    <p>Başlatmak için tıkla ❤️</p>
-  </button>
+<div id="girisEkrani" onclick="baslat()">
+  <button class="turtle-btn">🐢</button>
+  <p style="color: #d63384; font-weight: bold; margin-top: 20px;">Başlatmak için dokun ❤️</p>
 </div>
 
 <div id="mektupPaneli">
   <div class="icerik-kutu">
     <h2 style="color: #d63384; text-align: center;">Sevgilim,</h2>
-    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım.</p>
-    <p>Güzelliğin ve samimiyetin beni etkiledi ama kalbimi sana bağlayan şey merhametin oldu.</p>
-    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
-    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold;">Anılarımıza Git ✨</button>
+    
+    <p>
+      Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum.
+      Bizim evin önünde tanıştık. Ben o gün aşağıda arabayla uğraşıyordum
+      ama aslında aklım başka hiçbir yerde değildi.
+      Seni görebilmek için durmadan inip çıktım.
+      Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.
+    </p>
+
+    <p>
+      İlk başta beni etkileyen güzelliğin ve samimiyetindi.
+      Ama zamanla seni tanıdıkça anladım ki,
+      içinin dışınla bir oluşu, merhametin
+      ve bana karşı olan tavırların seni benim için çok daha özel kılıyordu.
+      En önemlisi de beni gerçekten dinlemen ve anlamandı.
+    </p>
+
+    <p>
+      Aslında bizim sevgimiz karşılıklıydı.
+      Belki de bu yüzden aşkımız bu kadar güzel büyüdü.
+      Eylül’ün on birinde bana ilk defa “seni çok seviyorum” dediğin an
+      kalbime kazındı.
+      On beşinde sevgili olduk.
+      Sana kısık bir sesle “sana aşığım” dedim
+      ve benimle uzun bir yolculuğa var mısın diye sordum.
+    </p>
+
+    <p>
+      Zor zamanlarımız oldu belki ama biz hiçbir zaman kavga ederek çözmedik.
+      Ne hissettiysek anlattık, dinledik ve hep aştık.
+      Bu da bana şunu öğretti:
+      Sen benim için sadece bir sevgili değil,
+      aynı zamanda sığındığım yer oldun.
+    </p>
+
+    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:16px;">
+      Seni elə sevirəm ki ❤️
+    </button>
   </div>
 </div>
 
 <div id="login">
   <h1>Bizim Hikâyemiz 💖</h1>
-  <input type="password" id="pw" placeholder="Şifre" style="padding:10px; border-radius:8px; border:none; margin:10px;">
-  <button onclick="girisYap()" style="padding:10px 20px; border-radius:8px; border:none; background:#d63384; color:white;">Giriş</button>
+  <input type="password" id="pw" placeholder="Şifre" style="padding:12px; border-radius:8px; border:none; margin:10px; text-align:center;">
+  <button onclick="girisYap()" style="padding:10px 30px; border-radius:8px; border:none; background:#d63384; color:white; font-weight:bold; cursor:pointer;">Giriş</button>
 </div>
 
 <div id="site">
-  <h2 style="color: #d63384;">Anılarımız 📸</h2>
+  <h2 style="color: #d63384;">2025 Anılarımız 📸</h2>
   <div class="gallery">
     <img src="foto1.jpeg">
     <img src="foto2.jpeg">
+    <img src="foto3.jpeg">
   </div>
 </div>
 
@@ -115,18 +147,22 @@
 
   function baslat() {
     // Müziği oynat
-    muzik.play().then(() => {
-      document.getElementById("muzikBtn").innerText = "🔇";
-    }).catch(e => alert("Lütfen sayfada herhangi bir yere dokun."));
+    muzik.play().catch(e => console.log("Müzik başlatılamadı"));
+    document.getElementById("muzikBtn").innerText = "🔇";
 
-    // Giriş ekranını yok et, mektubu getir
+    // Ekranları değiştir
     document.getElementById("girisEkrani").style.display = "none";
     document.getElementById("mektupPaneli").style.display = "flex";
   }
 
   function muzikKontrol() {
-    if (muzik.paused) { muzik.play(); document.getElementById("muzikBtn").innerText = "🔇"; }
-    else { muzik.pause(); document.getElementById("muzikBtn").innerText = "🔊"; }
+    if (muzik.paused) {
+      muzik.play();
+      document.getElementById("muzikBtn").innerText = "🔇";
+    } else {
+      muzik.pause();
+      document.getElementById("muzikBtn").innerText = "🔊";
+    }
   }
 
   function mektubuKapat() {
@@ -140,7 +176,7 @@
       document.getElementById("login").style.display = "none";
       document.getElementById("site").style.display = "block";
     } else {
-      alert("Hatalı şifre ❤️");
+      alert("Hatalı şifre sevgilim ❤️");
     }
   }
 </script>
