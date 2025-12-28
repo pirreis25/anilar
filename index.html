@@ -25,7 +25,6 @@
     border: none;
     font-size: 100px;
     cursor: pointer;
-    transition: transform 0.2s;
   }
 
   /* MEKTUP PANELİ */
@@ -45,7 +44,7 @@
     max-width: 480px;
     padding: 25px;
     border-radius: 20px;
-    max-height: 80vh;
+    max-height: 85vh;
     overflow-y: auto;
   }
 
@@ -53,13 +52,14 @@
     line-height: 1.6;
     color: #444;
     margin-bottom: 15px;
+    font-size: 15px;
   }
 
   /* LOGIN & SITE */
   #login, #site { display: none; text-align: center; }
   #login { height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: #ff9a9e; color: white;}
   #site { padding: 20px; }
-  .gallery img { width: 100%; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  .gallery img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
 
   #muzikBtn {
     position: fixed;
@@ -121,8 +121,16 @@
       aynı zamanda sığındığım yer oldun.
     </p>
 
-    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:16px;">
+    <p style="font-weight: bold; font-style: italic;">
+      İşin kısacası...
+    </p>
+
+    <p style="text-align: center; font-weight: bold; color: #d63384; font-size: 18px;">
       Seni elə sevirəm ki ❤️
+    </p>
+
+    <button onclick="mektubuKapat()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:15px; border-radius:10px; cursor:pointer; font-weight:bold; font-size:16px;">
+      Mektubu Kapat
     </button>
   </div>
 </div>
@@ -146,11 +154,8 @@
   const muzik = document.getElementById("muzik");
 
   function baslat() {
-    // Müziği oynat
-    muzik.play().catch(e => console.log("Müzik başlatılamadı"));
+    muzik.play().catch(e => console.log("Müzik etkileşim bekliyor"));
     document.getElementById("muzikBtn").innerText = "🔇";
-
-    // Ekranları değiştir
     document.getElementById("girisEkrani").style.display = "none";
     document.getElementById("mektupPaneli").style.display = "flex";
   }
