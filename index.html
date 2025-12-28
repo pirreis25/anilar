@@ -3,166 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <title>Bizim Hikâyemiz ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body { margin: 0; font-family: Georgia, serif; background: #fff0f5; overflow: hidden; }
+body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
 
-  /* GİRİŞ EKRANI - TAM EKRAN TIKLAMA ALANI */
-  #girisEkrani {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #fffaf0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999; /* En üstte */
-    cursor: pointer;
-  }
+/* GİRİŞ EKRANI */
+#mektup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+#mektup .icerik{
+  background:#fffaf0;
+  width:90%;
+  max-width:520px;
+  padding:28px;
+  border-radius:18px;
+  text-align: center;
+}
 
-  .turtle-container {
-    position: relative;
-    font-size: 100px;
-    animation: süzülme 3s ease-in-out infinite;
-  }
+/* KAPLUMBAĞA BUTONU */
+.turtle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: 80px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+.turtle-btn:active { transform: scale(0.9); }
 
-  .flowers {
-    position: absolute;
-    font-size: 50px;
-    bottom: 5px;
-    left: -25px;
-    transform: rotate(-20deg);
-  }
+.flowers {
+  position: absolute;
+  font-size: 45px;
+  bottom: 15px;
+  left: 5px;
+  transform: rotate(-15deg);
+}
 
-  @keyframes süzülme {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
+/* LOGIN */
+#login{
+  display:none;
+  height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color:white;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+#login input,#login button{ padding:12px; margin:6px; border:none; border-radius:8px; }
 
-  /* MEKTUP */
-  #mektup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none; /* Başta gizli */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
+/* SITE */
+#site{display:none;padding-bottom:90px;}
+.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px; }
+.photo{ background:white; border-radius:18px; overflow:hidden; cursor:pointer; }
+.photo img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
+.photo p{display:none;}
 
-  .mektup-icerik {
-    background: #fffaf0;
-    width: 85%;
-    max-width: 450px;
-    padding: 25px;
-    border-radius: 18px;
-    position: relative;
-  }
-
-  /* DİĞERLERİ */
-  #login, #site { display: none; text-align: center; padding: 20px; }
-  #login { height: 100vh; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg,#ff9a9e,#fad0c4); color: white;}
-  
-  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-  .gallery img { width: 100%; border-radius: 10px; }
-
-  #muzikBtn {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 100000;
-    background: #ff9a9e;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-  }
+#muzikBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  z-index:2000;
+  background:#ff9a9e;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  font-size:20px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
+
+<div id="mektup">
+  <div class="icerik" id="mektupKutusu">
+    
+    <div id="baslangic">
+        <button class="turtle-btn" onclick="mektubuAc()">
+            <span class="flowers">💐</span>
+            🐢
+        </button>
+        <p style="color: #d63384; font-weight: bold;">Okumak için kaplumbağaya tıkla ❤️</p>
+    </div>
+
+    <div id="metin" style="display: none; text-align: left;">
+        <h2 style="text-align:center">Sevgilim,</h2>
+        <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım. Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.</p>
+        <p>Güzelliğin ve samimiyetin beni etkiledi ama içinin dışınla bir oluşu, merhametin ve beni gerçekten dinleyip anlaman kalbimi sana bağlayan şey oldu.</p>
+        <p><strong>Seni elə sevirəm ki ❤️</strong></p>
+        <button onclick="siteyeGit()" style="width:100%; margin-top:18px; padding:14px; border:none; border-radius:10px; background:#ff9a9e; color:white; font-size:16px; cursor:pointer;">Mektubu Kapat 💌</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="login">
+  <h1>Bizim Hikâyemiz 💖</h1>
+  <input type="password" id="pw" placeholder="Şifre">
+  <button onclick="giris()">Giriş</button>
+</div>
+
+<div id="site">
+  <h2 style="text-align:center">Anılarımız 📸</h2>
+  <div class="gallery">
+    <div class="photo"><img src="foto1.jpeg"><p>Açıklama 1</p></div>
+    <div class="photo"><img src="foto2.jpeg"><p>Açıklama 2</p></div>
+  </div>
+</div>
 
 <audio id="muzik" loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
 <button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
 
-<div id="girisEkrani" onclick="her seyiBaslat()">
-    <div class="turtle-container">
-        🐢<span class="flowers">💐</span>
-    </div>
-    <p style="color: #d63384; font-weight: bold; margin-top: 30px;">
-        Sana bir sürprizim var...<br>Başlatmak için tıkla ❤️
-    </p>
-</div>
-
-<div id="mektup">
-  <div class="mektup-icerik">
-    <h2 style="color: #d63384; text-align: center;">Sevgilim,</h2>
-    <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum...</p>
-    <p>Güzelliğin ve samimiyetin beni etkiledi ama kalbimi sana bağlayan şey merhametin oldu.</p>
-    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
-    <button onclick="mektuptanLogine()" style="width:100%; background:#ff9a9e; color:white; border:none; padding:12px; border-radius:10px; cursor:pointer;">Devamı İçin Tıkla ✨</button>
-  </div>
-</div>
-
-<div id="login">
-  <h1>Bizim Hikâyemiz 💖</h1>
-  <input type="password" id="pw" placeholder="Şifre" style="padding:10px; border-radius:8px; border:none; margin:10px;">
-  <button onclick="girisYap()" style="padding:10px 20px; border-radius:8px; border:none; background:#d63384; color:white;">Giriş</button>
-</div>
-
-<div id="site">
-  <h2 style="color: #d63384;">Anılarımız 📸</h2>
-  <div class="gallery">
-    <img src="foto1.jpeg">
-    <img src="foto2.jpeg">
-    <img src="foto3.jpeg">
-  </div>
-</div>
-
 <script>
-  const muzik = document.getElementById("muzik");
+const muzik = document.getElementById("muzik");
+const muzikBtn = document.getElementById("muzikBtn");
 
-  function her seyiBaslat() {
-    // 1. Müziği Çal
-    muzik.play().then(() => {
-      document.getElementById("muzikBtn").innerText = "🔇";
-    }).catch(e => console.log("Müzik hatası"));
+// Kaplumbağaya basınca müzik çalar ve mektup metni görünür
+function mektubuAc(){
+  muzik.play();
+  muzikBtn.innerText = "🔇";
+  document.getElementById("baslangic").style.display = "none";
+  document.getElementById("metin").style.display = "block";
+}
 
-    // 2. Giriş ekranını gizle
-    document.getElementById("girisEkrani").style.display = "none";
-
-    // 3. Mektubu göster
-    document.getElementById("mektup").style.display = "flex";
+function muzikKontrol(){
+  if(muzik.paused){
+    muzik.play();
+    muzikBtn.innerText = "🔇";
+  }else{
+    muzik.pause();
+    muzikBtn.innerText = "🔊";
   }
+}
 
-  function muzikKontrol() {
-    if (muzik.paused) {
-      muzik.play();
-      document.getElementById("muzikBtn").innerText = "🔇";
-    } else {
-      muzik.pause();
-      document.getElementById("muzikBtn").innerText = "🔊";
-    }
-  }
+function siteyeGit(){
+  document.getElementById("mektup").style.display="none";
+  document.getElementById("login").style.display="flex";
+}
 
-  function mektuptanLogine() {
-    document.getElementById("mektup").style.display = "none";
-    document.getElementById("login").style.display = "flex";
+function giris(){
+  const pw = document.getElementById("pw").value;
+  if(pw==="1234"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("site").style.display="block";
+  }else{
+    alert("Şifre yanlış");
   }
-
-  function girisYap() {
-    const sifre = document.getElementById("pw").value;
-    if (sifre === "1234") {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("site").style.display = "block";
-      document.body.style.overflow = "auto";
-    } else {
-      alert("Hatalı şifre ❤️");
-    }
-  }
+}
 </script>
 
 </body>
