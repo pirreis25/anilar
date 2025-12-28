@@ -18,6 +18,7 @@ body{
   justify-content:center;
   align-items:center;
   height:100vh;
+  width:100vw;
   background:#fff0f5;
 }
 #baslatBtn{
@@ -65,6 +66,7 @@ body{
 #login{
   display:none;
   height:100vh;
+  width:100vw;
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
   color:white;
   display:flex;
@@ -114,4 +116,97 @@ body{
 }
 #lightbox img{
   max-width:85%;
-  max-h
+  max-height:60vh;
+  border-radius:18px;
+}
+
+#lightbox p{
+  color:white;
+  margin-top:15px;
+  text-align:center;
+  font-style:italic;
+  font-size:18px;
+  max-width:85%;
+  line-height:1.5;
+  word-wrap:break-word;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* MENU */
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+}
+nav button{
+  flex:1;
+  padding:14px;
+  border:none;
+  background:#ff9a9e;
+  color:white;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- KAPLUMBAĞA BUTONU -->
+<div id="baslatBtnContainer">
+  <button id="baslatBtn">🐢</button>
+</div>
+
+<!-- MEKTUP -->
+<div id="mektup">
+  <div class="icerik">
+    <h2>Sevgilim,</h2>
+
+    <p>
+      Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum.
+      Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım.
+      Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.
+    </p>
+
+    <p>
+      Güzelliğin ve samimiyetin beni etkiledi ama
+      içinin dışınla bir oluşu, merhametin ve beni gerçekten dinleyip anlaman
+      kalbimi sana bağlayan şey oldu.
+    </p>
+
+    <p>
+      Eylül’ün on birinde söylediğin “seni çok seviyorum” kalbime kazındı.
+      Sana “benimle uzun bir yolculuğa var mısın” dedim
+      ve iyi ki evet dedin.
+    </p>
+
+    <p><strong>Seni elə sevirəm ki ❤️</strong></p>
+
+    <button onclick="mektubuKapat()">Mektubu Aç 💌</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login">
+  <h1>Bizim Hikâyemiz 💖</h1>
+  <input type="password" id="pw" placeholder="Şifre">
+  <button onclick="giris()">Giriş</button>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="kapatLightbox()">
+  <div>
+    <img id="buyukFoto">
+    <p id="buyukYazi"></p>
+  </div>
+</div>
+
+<!-- SITE -->
+<div id="site">
+
+<h2 style="text-align:center">2025 Anılarımız 📸</h2>
+
+<div class="gallery">
+
+  <div class=
