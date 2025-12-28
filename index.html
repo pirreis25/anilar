@@ -5,9 +5,13 @@
 <title>Bizim Hikâyemiz ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
+body{
+  margin:0;
+  font-family:Georgia,serif;
+  background:#fff0f5;
+}
 
-/* GİRİŞ EKRANI */
+/* MEKTUP */
 #mektup{
   position:fixed;
   inset:0;
@@ -25,27 +29,18 @@ body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
   border-radius:18px;
   text-align: center;
 }
+#mektup h2{text-align:center;}
+#mektup p{line-height:1.7; text-align: left;}
 
 /* KAPLUMBAĞA BUTONU */
 .turtle-btn {
   background: none;
   border: none;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
   font-size: 80px;
-  padding: 20px;
-  transition: transform 0.3s;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 .turtle-btn:active { transform: scale(0.9); }
-
-.flowers {
-  position: absolute;
-  font-size: 45px;
-  bottom: 15px;
-  left: 5px;
-  transform: rotate(-15deg);
-}
 
 /* LOGIN */
 #login{
@@ -57,15 +52,35 @@ body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
   justify-content:center;
   align-items:center;
 }
-#login input,#login button{ padding:12px; margin:6px; border:none; border-radius:8px; }
+#login input,#login button{
+  padding:12px;
+  margin:6px;
+  border:none;
+  border-radius:8px;
+}
 
 /* SITE */
 #site{display:none;padding-bottom:90px;}
-.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px; }
-.photo{ background:white; border-radius:18px; overflow:hidden; cursor:pointer; }
-.photo img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
-.photo p{display:none;}
 
+/* GALERİ */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.photo{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+}
+.photo img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+
+/* MÜZİK BUTONU */
 #muzikBtn{
   position:fixed;
   top:15px;
@@ -85,20 +100,18 @@ body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
 <body>
 
 <div id="mektup">
-  <div class="icerik" id="mektupKutusu">
+  <div class="icerik">
     
     <div id="baslangic">
-        <button class="turtle-btn" onclick="mektubuAc()">
-            <span class="flowers">💐</span>
-            🐢
-        </button>
-        <p style="color: #d63384; font-weight: bold;">Okumak için kaplumbağaya tıkla ❤️</p>
+        <button class="turtle-btn" onclick="mektubuAc()">🐢</button>
+        <p style="text-align: center; color: #d63384; font-weight: bold;">Başlatmak için tıkla ❤️</p>
     </div>
 
-    <div id="metin" style="display: none; text-align: left;">
-        <h2 style="text-align:center">Sevgilim,</h2>
+    <div id="metin" style="display: none;">
+        <h2>Sevgilim,</h2>
         <p>Seninle tanıştığımız günü düşündüğümde hâlâ gülümsüyorum. Bizim evin önünde tanıştık. Seni görebilmek için durmadan inip çıktım. Seni ilk gördüğüm an, büyülenmiş bir kedi gibiydim.</p>
         <p>Güzelliğin ve samimiyetin beni etkiledi ama içinin dışınla bir oluşu, merhametin ve beni gerçekten dinleyip anlaman kalbimi sana bağlayan şey oldu.</p>
+        <p>Eylül’ün on birinde söylediğin “seni çok seviyorum” kalbime kazındı. Sana “benimle uzun bir yolculuğa var mısın” dedim ve iyi ki evet dedin.</p>
         <p><strong>Seni elə sevirəm ki ❤️</strong></p>
         <button onclick="siteyeGit()" style="width:100%; margin-top:18px; padding:14px; border:none; border-radius:10px; background:#ff9a9e; color:white; font-size:16px; cursor:pointer;">Mektubu Kapat 💌</button>
     </div>
@@ -115,53 +128,4 @@ body{ margin:0; font-family:Georgia,serif; background:#fff0f5; }
 <div id="site">
   <h2 style="text-align:center">Anılarımız 📸</h2>
   <div class="gallery">
-    <div class="photo"><img src="foto1.jpeg"><p>Açıklama 1</p></div>
-    <div class="photo"><img src="foto2.jpeg"><p>Açıklama 2</p></div>
-  </div>
-</div>
-
-<audio id="muzik" loop>
-  <source src="muzik.mp3" type="audio/mpeg">
-</audio>
-<button id="muzikBtn" onclick="muzikKontrol()">🔊</button>
-
-<script>
-const muzik = document.getElementById("muzik");
-const muzikBtn = document.getElementById("muzikBtn");
-
-// Kaplumbağaya basınca müzik çalar ve mektup metni görünür
-function mektubuAc(){
-  muzik.play();
-  muzikBtn.innerText = "🔇";
-  document.getElementById("baslangic").style.display = "none";
-  document.getElementById("metin").style.display = "block";
-}
-
-function muzikKontrol(){
-  if(muzik.paused){
-    muzik.play();
-    muzikBtn.innerText = "🔇";
-  }else{
-    muzik.pause();
-    muzikBtn.innerText = "🔊";
-  }
-}
-
-function siteyeGit(){
-  document.getElementById("mektup").style.display="none";
-  document.getElementById("login").style.display="flex";
-}
-
-function giris(){
-  const pw = document.getElementById("pw").value;
-  if(pw==="1234"){
-    document.getElementById("login").style.display="none";
-    document.getElementById("site").style.display="block";
-  }else{
-    alert("Şifre yanlış");
-  }
-}
-</script>
-
-</body>
-</html>
+    <div class="photo"><img
